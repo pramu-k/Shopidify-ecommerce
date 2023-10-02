@@ -21,4 +21,10 @@ export class ProductService {
   getCartItemsByCustomerId(custId:number):Observable<any[]>{
     return this.http.get<any[]>("https://onlinetestapi.gerasim.in/api/Ecomm/GetCartProductsByCustomerId?id="+custId);
   }
+  removeCartItemById(cartId:number):Observable<any[]>{
+    return this.http.get<any[]>("https://onlinetestapi.gerasim.in/api/Ecomm/DeleteProductFromCartById?id="+cartId);
+  }
+  makePurchase(saleObj:any):Observable<any>{
+    return this.http.post<any>("https://onlinetestapi.gerasim.in/api/Ecomm/AddNewSale",saleObj);
+  }
 }

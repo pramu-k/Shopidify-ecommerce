@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "./services/product.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ export class AppComponent implements OnInit{
   title = 'ecommerce';
   cartProducts:any[]=[];
   subTotal:number=0;
-  constructor(private productService:ProductService) {
+  constructor(private productService:ProductService, private router:Router) {
     this.productService.cartAddedSubject.subscribe(res=>{
       debugger;
       this.loadCart();
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit{
   }
 
   loadCart(){
+    this.subTotal=0;
     this.productService.getCartItemsByCustomerId(1).subscribe((res:any)=>{
       this.cartProducts=res.data;
       this.cartProducts.forEach(element=>{
@@ -31,5 +33,6 @@ export class AppComponent implements OnInit{
   }
 
   redirectToSale() {
+    this.router.navigateByUrl('/sale');
   }
 }

@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit{
     Quantity: 0,
     AddedDate: "2023-10-02T12:07:31.452Z"
   }
-  constructor(private productServie:ProductService) {
+  constructor(private productService:ProductService) {
   }
   ngOnInit() {
     debugger;
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit{
 
   loadAllProducts(){
     debugger;
-    this.productServie.getAllProducts().subscribe((result:any)=>{
+    this.productService.getAllProducts().subscribe((result:any)=>{
       this.productList = result.data; //we decide what to fetch by looking at what the api call returns us.
       //here the result is an object, and there's an attribute called data inside that object.
       //That attribute contains the list of products.
@@ -34,11 +34,11 @@ export class HomeComponent implements OnInit{
   addItemToCart(productId:number){
     debugger;
     this.cartObject.ProductId=productId;
-    this.productServie.addToCart(this.cartObject).subscribe((res:any)=>{
+    this.productService.addToCart(this.cartObject).subscribe((res:any)=>{
       debugger;
       if(res.result){
         alert("Product added to the cart successfully!");
-        this.productServie.cartAddedSubject.next(true);
+        this.productService.cartAddedSubject.next(true);
       }
   });
   }
