@@ -17,7 +17,7 @@ export class SaleComponent implements OnInit{
     Discount: 0,
     PaymentNaration: "Visa",
     DeliveryAddress1: "No.10",
-    DeliveryAddress2: "George Dtreat",
+    DeliveryAddress2: "George Street",
     DeliveryCity: "Colombo",
     DeliveryPinCode: "80000",
     DeliveryLandMark: "Big Tree"
