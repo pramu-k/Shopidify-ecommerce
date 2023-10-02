@@ -9,6 +9,7 @@ import {ProductService} from "./services/product.service";
 export class AppComponent implements OnInit{
   title = 'ecommerce';
   cartProducts:any[]=[];
+  subTotal:number=0;
   constructor(private productService:ProductService) {
     this.productService.cartAddedSubject.subscribe(res=>{
       debugger;
@@ -22,6 +23,9 @@ export class AppComponent implements OnInit{
   loadCart(){
     this.productService.getCartItemsByCustomerId(1).subscribe((res:any)=>{
       this.cartProducts=res.data;
+      this.cartProducts.forEach(element=>{
+        this.subTotal+=element.productPrice;
+      });
       debugger;
     })
   }
