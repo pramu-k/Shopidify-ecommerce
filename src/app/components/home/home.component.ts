@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../services/product.service";
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,6 +9,13 @@ import {ProductService} from "../../services/product.service";
 })
 export class HomeComponent implements OnInit{
   productList:any[]=[];
+  cartObject:any={
+    CartId: 0,
+    CustId: 1,
+    ProductId: 0,
+    Quantity: 0,
+    AddedDate: "2023-10-02T12:07:31.452Z"
+  }
   constructor(private productServie:ProductService) {
   }
   ngOnInit() {
@@ -23,5 +31,17 @@ export class HomeComponent implements OnInit{
       //That attribute contains the list of products.
     })
   }
+  addItemToCart(productId:number){
+    debugger;
+    this.cartObject.ProductId=productId;
+    this.productServie.addToCart(this.cartObject).subscribe((res:any)=>{
+      debugger;
+      if(res.result){
+        alert("Product added to the cart successfully!");
+        this.productServie.cartAddedSubject.next(true);
+      }
+  });
+  }
+
 
 }

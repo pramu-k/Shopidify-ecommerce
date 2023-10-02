@@ -18,11 +18,11 @@
                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               home
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-
-              <li><a class="dropdown-item" href="#">Option</a></li>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -61,21 +61,6 @@
               <li><a class="dropdown-item" href="#">Option</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle fw-semibold text-uppercase text-black  me-1" href="#" id="navbarDropdown"
-               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              shop
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Option</a></li>
-              <li><a class="dropdown-item" href="#">Option</a></li>
-
-              <li><a class="dropdown-item" href="#">Option</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-semibold text-uppercase text-black  me-1" href="#">Contact us</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link " href="#">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -86,12 +71,12 @@
                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-cart-shopping"></i>
               <span class="position-absolute  translate-middle badge rounded-pill bg-danger">
-               <!--{{cartProducts.length}}-->
+               {{cartProducts.length}}
                 <span class="visually-hidden">unread messages</span>
               </span>
             </a>
             <div class="dropdown-menu">
-              <div class="CartContainer">
+              <div class="CartContainer" style="width: 450px">
                 <div class="row">
                   <div class="col-6">
                     Your Cart
@@ -100,9 +85,9 @@
                     Remove All
                   </div>
                 </div>
-<!--                <div class="row pt-1" &lt;!&ndash;*ngFor="let cart of cartProducts"&ndash;&gt;>
+                <div class="row pt-1" *ngFor="let cart of cartProducts">
                   <div class="col-4">
-                    &lt;!&ndash;<img class="img-fluid" style="height: 30px;border-radius: 50%;" [src]="cart.productImageUrl" class="card-img-top">&ndash;&gt;
+                    <img class="img-fluid" style="height: 30px;border-radius: 50%;" [src]="cart.productImageUrl" class="card-img-top">
                   </div>
                   <div class="col-3">
                     {{cart.productName}}
@@ -111,9 +96,9 @@
                     {{cart.quantity + 1}}
                   </div>
                   <div class="col-2 text-end">
-                    {{ cart.productPrice}}
+                    {{ cart.productPrice|currency}}
                   </div>
-                </div>-->
+                </div>
 
                 <div class="row">
                   <div class="col-3">
@@ -136,7 +121,7 @@
                     <div> <small> 2 items</small></div>
                   </div>
                   <div class="col-4 text-end">
-                    <!--<strong> ${{subTotal}}</strong>-->
+                    <strong> Sub Total</strong>
                   </div>
                 </div>
                 <div class="row">
@@ -157,3 +142,4 @@
     <router-outlet></router-outlet>
   </div>
 </section>
+
