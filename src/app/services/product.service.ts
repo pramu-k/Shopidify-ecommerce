@@ -11,11 +11,10 @@ export class ProductService {
   constructor(private http:HttpClient) { }
 
   getAllProducts():Observable<any[]>{
-    debugger;
     return this.http.get<any[]>("https://onlinetestapi.gerasim.in/api/Ecomm/GetAllProducts");
   }
   addToCart(item:any):Observable<any>{
-    debugger;
+
     return this.http.post<any>("https://onlinetestapi.gerasim.in/api/Ecomm/AddToCart",item);
   }
   getCartItemsByCustomerId(custId:number):Observable<any[]>{
@@ -27,4 +26,5 @@ export class ProductService {
   makePurchase(saleObj:any):Observable<any>{
     return this.http.post<any>("https://onlinetestapi.gerasim.in/api/Ecomm/AddNewSale",saleObj);
   }
+
 }

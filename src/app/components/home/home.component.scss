@@ -1,0 +1,21 @@
+*{
+  margin: 0;
+}
+.box-container{
+  display: flex;
+}
+.box-shadow{
+  display: flex;
+  padding: 0;
+  height: 100%;
+}
+.card-body{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.card-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

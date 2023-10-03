@@ -13,7 +13,6 @@ export class AppComponent implements OnInit{
   subTotal:number=0;
   constructor(private productService:ProductService, private router:Router) {
     this.productService.cartAddedSubject.subscribe(res=>{
-      debugger;
       this.loadCart();
     })
   }
@@ -28,8 +27,17 @@ export class AppComponent implements OnInit{
       this.cartProducts.forEach(element=>{
         this.subTotal+=element.productPrice;
       });
-      debugger;
     })
+  }
+  clearCart(cart:any[]){
+    for (let item of cart) {
+      this.productService.removeCartItemById(item.cartId).subscribe((res:any)=>{
+        if(res.result){
+          this.loadCart();
+          this.productService.cartAddedSubject.next(true);
+        }
+      })
+    }
   }
 
   redirectToSale() {

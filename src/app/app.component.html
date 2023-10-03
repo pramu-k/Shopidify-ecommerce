@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-top ">
     <div class="container">
       <a class="navbar-brand fs-2 fw-bold " href="#"><i class="fa fa-cart-shopping fs-2"
-                                                        style="color: #f54242;"></i><span class="textBlur">Shopwise</span></a>
+                                                        style="color: #f54242;"></i><span class="textBlur">Shopidify</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <!--Toggle  -->
@@ -13,17 +13,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0  text-center ">
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle fw-semibold text-uppercase  me-1 text-danger" href="#"
-               id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <li class="nav-item">
+            <a class="nav-link fw-semibold text-uppercase  me-1 text-danger" href="#"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false" routerLink="products">
               home
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-black  me-1" href="#"
@@ -81,13 +75,15 @@
                   <div class="col-6">
                     Your Cart
                   </div>
-                  <div class="col-6 text-end text-danger">
-                    Remove All
+                  <div class="col-6 text-end text-danger remove_all">
+                    <a (click)="clearCart(cartProducts)">Clear All</a>
                   </div>
                 </div>
-                <div class="row pt-1" *ngFor="let cart of cartProducts">
-                  <div class="col-4">
-                    <img class="img-fluid" style="height: 30px;border-radius: 50%;" [src]="cart.productImageUrl" class="card-img-top">
+                <div class="row pt-1 product-row" *ngFor="let cart of cartProducts">
+                  <div class="col-4 img-upper-container">
+                    <div class="img-container">
+                      <img class="img-fluid"  [src]="cart.productImageUrl" class="card-img-top">
+                    </div>
                   </div>
                   <div class="col-3">
                     {{cart.productName}}
@@ -110,15 +106,11 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-2">
-
-                  </div>
-                  <div class="col-2">
-
-                  </div>
+                  <div class="col-2"></div>
+                  <div class="col-2"></div>
                   <div class="col-4">
                     <div class="Subtotal">Sub-Total</div>
-                    <div> <small> 2 items</small></div>
+                    <div> <small> {{cartProducts.length}} items</small></div>
                   </div>
                   <div class="col-4 text-end">
                     <strong>{{subTotal|currency}}</strong>
