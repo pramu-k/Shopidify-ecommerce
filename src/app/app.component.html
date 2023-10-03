@@ -124,6 +124,25 @@
               </div>
             </div>
           </li>
+          <li class="login-button">
+              <div class="toolbar">
+                <ng-container *ngIf="authService.currentUser$ | async as user  ; else loginButton">
+                  <button mat-button [matMenuTriggerFor]="userMenu">
+                    <img class="profile-image-toolbar" width="30px" height="30px" [src]="user.photoURL ?? 'assets/images/EmptyProfile.png'">
+                    {{user.displayName}}
+                    <span class="n1"><mat-icon class="expand-icon">expand_more</mat-icon></span>
+                  </button>
+                </ng-container>
+              </div>
+
+              <ng-template #loginButton>
+                <button mat-button class="mat-button" routerLink="login">
+                  <mat-icon>login</mat-icon>
+                  Login
+                </button>
+              </ng-template>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -134,4 +153,14 @@
     <router-outlet></router-outlet>
   </div>
 </section>
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+  <button mat-menu-item routerLink="/profile">
+    <mat-icon>account_circle</mat-icon>
+    Profile
+  </button>
+</mat-menu>
 

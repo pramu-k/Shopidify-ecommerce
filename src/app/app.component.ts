@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductService} from "./services/product.service";
 import {Router} from "@angular/router";
+import {AuthenticationService} from "./services/authentication.service";
+import {async} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,11 @@ export class AppComponent implements OnInit{
   title = 'ecommerce';
   cartProducts:any[]=[];
   subTotal:number=0;
-  constructor(private productService:ProductService, private router:Router) {
+  constructor(
+    private productService:ProductService,
+    private router:Router,
+    public authService:AuthenticationService
+    ) {
     this.productService.cartAddedSubject.subscribe(res=>{
       this.loadCart();
     })
@@ -41,6 +47,20 @@ export class AppComponent implements OnInit{
   }
 
   redirectToSale() {
-    this.router.navigateByUrl('/sale');
+    this.authService.currentUser$.subscribe((res)=>{
+      if(res!=null){
+        this.router.navigateByUrl('/sale');
+      }else {
+        alert("Please login to place the order!");
+      }
+    });
+  }
+
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.clearCart(this.cartProducts);
+      this.router.navigate(['/']);
+    });
+
   }
 }
